@@ -13,36 +13,18 @@ var stringifyJSON = function (obj) {
 		return result;
   }
   
-  //If obj is boolean return obj
-  if(typeof obj === 'boolean'){
+  //If obj is boolean, number, or null return obj
+  if(typeof obj === 'boolean' || typeof obj === 'number' || obj === null){
 		result = String(obj);
 		return result;
   }
-  
-  //If obj is number return obj
-  if(typeof obj === 'number'){
-		result = String(obj);
-		return result;
-  }
-  
-  //If obj is 'null' return obj
-  if(obj === null){
-		result =  String(obj);
-		return result;
-  }
-  
-  //If obj is undefined return nothing
-  if(typeof obj === "undefined"){
+ 
+  //If obj is undefined of a function return nothing
+  if(typeof obj === "undefined" || typeof obj === "function"){
 	  result = '';
 	  return String(result);
   }
-  
-  //If obj is a function return nothing
-  if(typeof obj === "function"){
-	  result = '';
-	  return String(result);
-  }
-  
+
   //If obj is object check to see if it is an array or an object
   if(typeof obj === 'object'){
     
@@ -63,7 +45,7 @@ var stringifyJSON = function (obj) {
 	    	if(typeof obj[i] === 'function' || typeof obj[i] === 'undefined'){
 		    	delete [i]
 	    	} else {
-		    result.push('"' + i + '":' + stringifyJSON(obj[i]));
+		    	result.push('"' + i + '":' + stringifyJSON(obj[i]));
 				}
 	    }
 			return "{" + String(result) + "}";
