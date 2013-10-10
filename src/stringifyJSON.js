@@ -57,9 +57,9 @@ var stringifyJSON = function (obj) {
     
     //If obj is object recursively cycle through it
     if(obj instanceof Object){
-    	console.log(obj);
 	    result = [];
 	    for(var i in obj){
+	    	//If obj value is a function delete that key
 	    	if(typeof obj[i] === 'function' || typeof obj[i] === 'undefined'){
 		    	delete [i]
 	    	} else {
