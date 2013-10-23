@@ -13,23 +13,23 @@ var getElementsByClassName = function (className) {
   var result = [];
   
   //Loop through the document.body elements
-  function check(node){
+  function check(node) {
     var childnode = node.childNodes
   
-  	for(var i = 0; i < childnode.length; i++){
-  		//console.log(childnode[i]);
-	  	//If the class name of element is equal to className push the element to result
-			if(childnode[i].className !== undefined){
-				if(childnode[i].classList.contains(className)){
-			  	result.push(childnode[i]);
-				} else {
-					check(childnode[i])
-				}
-			}
-		}
-	};
-	
-	check(window.document);
+    for (var i = 0; i < childnode.length; i++) {
+      //console.log(childnode[i]);
+      //If the class name of element is equal to className push the element to result
+      if (childnode[i].className !== undefined) {
+        if (childnode[i].classList.contains(className)) {
+          result.push(childnode[i]);
+        } else {
+          check(childnode[i])
+        }
+      }
+    }
+  };
+  
+  check(window.document);
   
   //console.log(result);
   return result; 
